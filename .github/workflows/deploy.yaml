@@ -1,0 +1,8 @@
+on:push
+  jobs:
+    pnpm-build:
+      runs-on: ubuntu-latest
+      steps:
+      -uses: actions/checkout@v4
+      -runs: pnpm install
+      -runs: pnpm build
