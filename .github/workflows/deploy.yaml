@@ -1,34 +1,24 @@
-# 工作流名称
-name: test deploy
-
-# 触发条件：push 到 main 分支时运行
+name: Deploy Next.js to Pages
 on:
   push:
     branches: [ main ]
 
 permissions:
-  contents: write
+  pages: write
+  id-token: write
 
-# 任务
 jobs:
-  npm-build:
-    name: npm-build work
-    # 运行环境：GitHub免费的Ubuntu服务器
+  deploy:
     runs-on: ubuntu-latest
-
-    # 具体步骤
     steps:
-      # 允许访问package.json
-      - name: 拉取代码
-        uses: actions/checkout@v4
-
-      - name: 安装依赖和项目打包
-        run: 
-          npm install
-          npm run build
-
-      - name: deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          branch: gh-pages # 部署到gh-pages分支
-          folder: ./out
+          node-version: 20
+          
+      - run: npm install
+      - run: npm run build  # 关键：必须生成 out
+
+      - uses: upload-pages-artifact@v3
+        with:
+          path: ./out  # 路径完全正确
