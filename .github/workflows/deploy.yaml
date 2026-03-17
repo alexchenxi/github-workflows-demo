@@ -1,8 +1,21 @@
-on:push
-  jobs:
-    pnpm-build:
-      runs-on: ubuntu-latest
-      steps:
-      -uses: actions/checkout@v4
-      -runs: pnpm install
-      -runs: pnpm build
+# 工作流名称
+name: test deploy
+
+# 触发条件：push 到 main 分支时运行
+on:
+  push:
+    branches: [ main ]
+
+# 任务
+jobs:
+  # 任务名称：build
+  pnpm-build:
+    # 运行环境：GitHub免费的Ubuntu服务器
+    runs-on: ubuntu-latest
+
+    # 具体步骤
+    steps:
+      # 步骤1：打印Hello World
+      - uses: actions/checkout@v4
+      - runs: pnpm install
+      - runs: pnpm build
