@@ -15,6 +15,7 @@ jobs:
     # 具体步骤
     steps:
       # 允许访问package.json
-      - uses: actions/checkout@v4
-      - run: pnpm install
-      - run: pnpm build
+      - name: 拉取代码
+        uses: actions/checkout@v4
+      - run: npm install
+      - run: npm build
