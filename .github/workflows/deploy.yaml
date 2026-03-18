@@ -31,5 +31,5 @@ jobs:
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # 部署到gh-pages分支
+          branch: deploy-pages # 部署到gh-pages分支
           folder: out
