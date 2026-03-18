@@ -1,7 +1,12 @@
 self.__BUILD_MANIFEST = {
   "__rewrites": {
     "afterFiles": [],
-    "beforeFiles": [],
+    "beforeFiles": [
+      {
+        "source": "/github-workflows-demo//_next/:path+",
+        "destination": "/github-workflows-demo/_next/:path+"
+      }
+    ],
     "fallback": []
   },
   "sortedPages": [
